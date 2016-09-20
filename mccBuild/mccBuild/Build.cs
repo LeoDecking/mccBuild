@@ -24,11 +24,6 @@ namespace mccBuild
             _functions.Add(new Function(new[] { "/execute @a ~ ~ ~ //Function(say)", "/execute @a ~ ~ ~ //Function(space)" }, true, "main", 1));
             _functions.Add(new Function(new[] { "/testfor @e[type=!Player,r=2]","//Space(10000)","c/say test" }, false, "say", 1));
             _functions.Add(new Function(new [] {"/testfor @a[r=5]","//Space(10000)"}, false, "space", 0));
-            
-            string[] commands = GetOneCommand();
-            File.WriteAllLines("c:\\command.txt", commands);
-            Console.WriteLine(commands.Length+" commands written");
-            Console.Read();
         }
 
         public static string[] GetOneCommand(List<Function> functions)

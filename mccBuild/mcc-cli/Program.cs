@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using mccBuild
+using System.Linq;
+using mccBuild;
 
 namespace mccCli
 {
