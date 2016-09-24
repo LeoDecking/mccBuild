@@ -22,8 +22,9 @@ namespace mccBuild
 
         static List<Message> _messages = new List<Message>();
 
-        public static void Main(string[] args)
+        public static void Main(string[] args1)
         {
+            string[] args = {"C:\\Users\\Leo\\Source\\Repos\\mccBuild\\mccBuild\\mccBuild\\bin\\Release\\net46\\main.mcc" };
             if (args.Length < 1) return;
             if (!File.Exists(args[0]))
             {
@@ -189,7 +190,7 @@ namespace mccBuild
                     return new[] { command };
                 }
 
-                int index2 = command.Substring(index).IndexOf('(');
+                int index2 = index + command.Substring(index).IndexOf('(');
                 if (!command.Substring(index2).Contains(')'))
                 {
                     messages.Add(new Message(command.Substring(index, index2-index)+": ) expected", MessageType.Error, index, index2));
@@ -212,8 +213,9 @@ namespace mccBuild
 
                 FunctionCalls.Add(fileName);
                 string tag = Uuid + "functionCall" + fileName.Replace('\\','-');
-
-                command = command.Replace(command.Substring(index, index2+1+command.Substring(index2).IndexOf(')')), "/scoreboard players tag @e[c=1] add " + tag);
+                
+                command = command.Replace(command.Substring(index, index2+command.Substring(index2).IndexOf(')')-index+1), "/scoreboard players tag @e[c=1] add " + tag);
+                
                 commands.Add(command);
                 commands.Add("/stats entity @e[tag="+tag+"] set SuccessCount @e[c=1] mccSuccessCount");
                 commands.Add("/scoreboard players set @e[tag=" + tag + "] mccSuccessCount 0");

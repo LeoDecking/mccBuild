@@ -1,0 +1,5 @@
+#MAIN
+/testfor @e[type=ArmorStand]
+#This is a comment
+c/say There are some
+ArmorStands

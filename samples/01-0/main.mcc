@@ -1,0 +1,6 @@
+#MAIN
+/say this is a loop
+#INIT
+/say hello
+#REMOVE
+/say bye

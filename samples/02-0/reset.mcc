@@ -1,0 +1,8 @@
+#INIT
+/say this
+will be said too
+#MAIN
+/testfor @e[type=Sheep,r=5]
+c/gamemode 0 @p
+#REMOVE
+/kill @e[type=Sheep]
