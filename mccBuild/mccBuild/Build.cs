@@ -3,9 +3,7 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks.Dataflow;
 
 namespace mccBuild
 {
@@ -46,9 +44,7 @@ namespace mccBuild
             {
                 File.WriteAllText(dir + "\\output" + (i + 1) + ".txt", commands[i]);
             }
-            _messages.ForEach(msg=>Console.WriteLine(msg.Text+" at "+msg.File+": "+msg.Column));
-            if(_messages.Count>0)
-                Console.ReadLine();
+            _messages.ForEach(msg=>Console.WriteLine(msg.Text+" at "+msg.File));
         }
 
         private static List<List<CommandBlock>> GetCommandBlocks(string fileName)
@@ -62,8 +58,7 @@ namespace mccBuild
             
             #region normal
             List<CommandBlock> commandBlocks = new List<CommandBlock>();
-
-            List<Message> cMessages;
+            
             foreach (string cmd in ParseFile(fileName))
             {
                 commandBlocks.Add(new CommandBlock(cmd.Trim().TrimStart('c'),
@@ -277,7 +272,7 @@ namespace mccBuild
             if (commands.Count == 0)
                 commands.Add(command);
             Message msg = null;
-            commands.FindAll(x=>x.Length>30000).ForEach(x=>msg=new Message("Command is too long", MessageType.Error, 0));
+            commands.FindAll(x=>x.Length>30000).ForEach(x=>msg=new Message("Command is too long", MessageType.Error));
             if (msg != null)
             {
                 messages.Add(msg);
@@ -352,7 +347,7 @@ namespace mccBuild
                         mainCommands.Add(s.Trim());
                 }
             #endregion read
-            List<Message> messages=new List<Message>();
+            List<Message> messages;
             initCommands = string.Join("\n", initCommands).Replace("\n/", "\n//").Replace("\nc/", "\n//").Split(new[] { "\n/" }, StringSplitOptions.RemoveEmptyEntries).ToList();
             initCommands.RemoveAll(x => !x.TrimStart('c').StartsWith("/"));
             for(int i =0;i<initCommands.Count;i++)
