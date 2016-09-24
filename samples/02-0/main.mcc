@@ -1,0 +1,4 @@
+#INIT
+/say hi
+#MAIN
+/execute @a[m=1] ~ ~ ~ //reset()
