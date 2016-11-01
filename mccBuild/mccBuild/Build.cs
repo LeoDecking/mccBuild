@@ -22,9 +22,8 @@ namespace mccBuild
 
         static List<Message> _messages = new List<Message>();
 
-        public static void Main(string[] args1)
+        public static void Main(string[] args)
         {
-            string[] args = {"C:\\Users\\Leo\\Source\\Repos\\mccBuild\\mccBuild\\mccBuild\\bin\\Release\\net46\\main.mcc" };
             if (args.Length < 1) return;
             if (!File.Exists(args[0]))
             {
